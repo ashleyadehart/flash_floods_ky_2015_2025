@@ -1,4 +1,4 @@
-# Have Flash Flooding Events Increased in Frequency Within the State of Kentucky from 2015-2025?
+# Did Flash Flooding Events Increase in Frequency Within the State of Kentucky from 2015-2025?
 
 This project explores trends in flash flooding events in Kentucky from 2015–2025. The main question that was explored was whether flash flooding events had increased in frequency over the past ten years. This project demonstrates data cleaning, exploratory analysis, and visualization in Python.
 
