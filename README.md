@@ -50,7 +50,7 @@ The analysis workflow includes:
 - Identification of temporal trends and spatial hotspots
 - Visualization of frequency distributions and comparative trends over time
 
-## Key Findings (Summary)
+## Key Findings & Insights
 - Year-over-year variability in flash flood frequency was observed across the dataset.
 - Certain counties show consistently higher event concentrations, suggesting localized vulnerability.
 - Emergency services and call center reports are among the most common documentation sources.
