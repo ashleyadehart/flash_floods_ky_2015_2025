@@ -8,6 +8,7 @@ The primary objective is to apply data analytics techniques to identify temporal
 This project demonstrates skills in data cleaning, exploratory data analysis (EDA), time-series aggregation, and data visualization using Python.
 
 ## Project Structure
+```
 ├── data/
 │ ├── raw/
 │ ├── processed/
@@ -17,6 +18,7 @@ This project demonstrates skills in data cleaning, exploratory data analysis (ED
 ├── plots
 ├── README.md 
 └── requirements.txt
+```
 
 ## Key Analytical Questions
 - Has the frequency of flash flooding events in Kentucky increased from 2015 to 2025?
