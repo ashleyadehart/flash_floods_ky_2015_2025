@@ -20,6 +20,20 @@ This project demonstrates skills in data cleaning, exploratory data analysis (ED
 └── requirements.txt
 ```
 
+## How to Run This Project
+1. Clone this repository.
+2. Install the required Python packages:  
+   `pip install -r requirements.txt`
+3. Open `flash_floods_ky_2015_2025.ipynb` in Jupyter Notebook or JupyterLab.
+
+## Tools & Technologies
+- Python
+- Pandas
+- NumPy
+- Matplotlib
+- Seaborn
+- Jupyter Notebook
+
 ## Key Analytical Questions
 - Has the frequency of flash flooding events in Kentucky increased from 2015 to 2025?
 - Which years show the highest concentration of events?
@@ -35,20 +49,6 @@ The analysis workflow includes:
 - Exploratory Data Analysis (EDA) using Python (Pandas, Matplotlib, Seaborn)
 - Identification of temporal trends and spatial hotspots
 - Visualization of frequency distributions and comparative trends over time
-
-## Tools & Technologies
-- Python
-- Pandas
-- NumPy
-- Matplotlib
-- Seaborn
-- Jupyter Notebook
-
-## How to Run This Project
-1. Clone this repository.
-2. Install the required Python packages:  
-   `pip install -r requirements.txt`
-3. Open `flash_floods_ky_2015_2025.ipynb` in Jupyter Notebook or JupyterLab.
 
 ## Key Findings (Summary)
 - Year-over-year variability in flash flood frequency was observed across the dataset.
