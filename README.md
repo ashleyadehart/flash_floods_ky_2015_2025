@@ -47,7 +47,6 @@ The analysis workflow includes:
 - Standardization of event timestamps and geographic fields
 - Aggregation of events by year and county
 - Exploratory Data Analysis (EDA) using Python (Pandas, Matplotlib, Seaborn)
-- Identification of temporal trends and spatial hotspots
 - Visualization of frequency distributions and comparative trends over time
 
 ## Key Findings & Insights
@@ -60,6 +59,16 @@ The analysis workflow includes:
 - National Weather Service (NOAA Storm Events Database)
 - Weather API
 - Datasets used in this project can be found in the `data/` folder
+
+## Future Enhancements
+Planned future enhancements for this project include expanding the analytical depth and integrating geospatial analysis techniques to better understand flash flooding patterns across Kentucky.
+
+### Planned Extensions
+- Integrate historical weather condition data for counties impacted during the top five highest flash flooding event dates to analyze relationships between precipitation intensity, storm conditions, and event frequency.
+- Develop predictive analytics and forecasting models to identify potential flash flooding risk trends using historical event and weather datasets.
+- Incorporate GIS and geospatial analysis tools to create yearly county-level flash flooding maps for Kentucky from 2015–2025, enabling hotspot identification and spatial trend analysis.
+- Perform spatial visualization and clustering analysis to examine regional patterns and areas of recurring vulnerability.
+- Explore potential relationships between emergency response infrastructure and flash flooding impacts by analyzing 911 call center funding data, staffing levels, or resource allocation.
 
 ## Author
 Ashley A. Dehart
