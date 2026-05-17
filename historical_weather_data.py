@@ -7,7 +7,7 @@ df = pd.read_csv("data/processed/county_city_date_counts.csv")
 
 # Visual Crossing Setup
 BASE_URL = "https://weather.visualcrossing.com/VisualCrossingWebServices/rest/services/timeline/"
-API_KEY = "REMOVED"
+API_KEY = "YOUR API KEY GOES HERE!"
 
 # Function to get weather for one row
 def get_weather(row):
