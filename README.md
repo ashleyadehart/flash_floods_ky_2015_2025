@@ -3,8 +3,6 @@
 ## Project Overview
 This project analyzes flash flooding events in the state of Kentucky from 2015–2025 to determine whether there is an observable increase in event frequency over time.
 
-The primary objective is to apply data analytics techniques to identify temporal trends, geographic hotspots, and reporting patterns using real-world weather event data.
-
 This project demonstrates skills in data cleaning, exploratory data analysis (EDA), time-series aggregation, and data visualization using Python.
 
 ## Project Structure
@@ -13,9 +11,8 @@ This project demonstrates skills in data cleaning, exploratory data analysis (ED
 │ ├── raw/
 │ ├── processed/
 ├── notebooks/
-│ ├── flash_floods_ky_2015_2025.ipynb
-│ ├── historical_weather_data.ipynb
 ├── plots
+├── scripts
 ├── README.md 
 └── requirements.txt
 ```
