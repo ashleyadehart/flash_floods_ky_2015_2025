@@ -12,7 +12,7 @@ This project demonstrates skills in data cleaning, exploratory data analysis (ED
 │ ├── processed/
 ├── notebooks/
 ├── plots
-├── scripts
+├── scripts/
 ├── README.md 
 └── requirements.txt
 ```
