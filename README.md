@@ -13,6 +13,7 @@ This project demonstrates skills in data cleaning, exploratory data analysis (ED
 ├── notebooks/
 ├── plots/
 ├── scripts/
+├── .gitignore
 ├── README.md 
 └── requirements.txt
 ```
