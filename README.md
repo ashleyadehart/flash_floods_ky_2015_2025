@@ -3,8 +3,6 @@
 ## Project Overview
 This project analyzes flash flooding events in the state of Kentucky from 2015–2025 to determine whether there is an observable increase in event frequency over time.
 
-The primary objective is to apply data analytics techniques to identify temporal trends, geographic hotspots, and reporting patterns using real-world weather event data.
-
 This project demonstrates skills in data cleaning, exploratory data analysis (EDA), time-series aggregation, and data visualization using Python.
 
 ## Project Structure
@@ -13,6 +11,8 @@ This project demonstrates skills in data cleaning, exploratory data analysis (ED
 │ ├── raw/
 │ ├── processed/
 ├── notebooks/
+│ ├── flash_floods_ky_2015_2025.ipynb
+│ ├── historical_weather_data.ipynb
 ├── plots
 ├── README.md 
 └── requirements.txt
@@ -80,7 +80,6 @@ The analysis workflow includes:
 - Standardization of event timestamps and geographic fields
 - Aggregation of events by year and county
 - Exploratory Data Analysis (EDA) using Python (Pandas, Matplotlib, Seaborn)
-- Identification of temporal trends and spatial hotspots
 - Visualization of frequency distributions and comparative trends over time
 
 ## Key Findings & Insights
@@ -93,6 +92,16 @@ The analysis workflow includes:
 - National Weather Service (NOAA Storm Events Database)
 - Weather API
 - Datasets used in this project can be found in the `data/` folder
+
+## Future Enhancements
+Planned future enhancements for this project include expanding the analytical depth and integrating geospatial analysis techniques to better understand flash flooding patterns across Kentucky.
+
+### Planned Extensions
+- Integrate historical weather condition data for counties impacted during the top five highest flash flooding event dates to analyze relationships between precipitation intensity, storm conditions, and event frequency.
+- Develop predictive analytics and forecasting models to identify potential flash flooding risk trends using historical event and weather datasets.
+- Incorporate GIS and geospatial analysis tools to create yearly county-level flash flooding maps for Kentucky from 2015–2025, enabling hotspot identification and spatial trend analysis.
+- Perform spatial visualization and clustering analysis to examine regional patterns and areas of recurring vulnerability.
+- Explore potential relationships between emergency response infrastructure and flash flooding impacts by analyzing 911 call center funding data, staffing levels, or resource allocation.
 
 ## Author
 Ashley A. Dehart
