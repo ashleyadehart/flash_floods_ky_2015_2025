@@ -11,8 +11,6 @@ This project demonstrates skills in data cleaning, exploratory data analysis (ED
 │ ├── raw/
 │ ├── processed/
 ├── notebooks/
-│ ├── flash_floods_ky_2015_2025.ipynb
-│ ├── historical_weather_data.ipynb
 ├── plots
 ├── README.md 
 └── requirements.txt
