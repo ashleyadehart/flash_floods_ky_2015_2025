@@ -13,8 +13,6 @@ This project demonstrates skills in data cleaning, exploratory data analysis (ED
 │ ├── raw/
 │ ├── processed/
 ├── notebooks/
-│ ├── flash_floods_ky_2015_2025.ipynb
-│ ├── historical_weather_data.ipynb
 ├── plots
 ├── README.md 
 └── requirements.txt
@@ -22,9 +20,44 @@ This project demonstrates skills in data cleaning, exploratory data analysis (ED
 
 ## How to Run This Project
 1. Clone this repository.
-2. Install the required Python packages:  
-   `pip install -r requirements.txt`
-3. Open `flash_floods_ky_2015_2025.ipynb` in Jupyter Notebook or JupyterLab.
+### 2. Create a virtual environment
+Run the following command to create a virtual environment in a folder named `.venv`:
+
+```bash
+python -m venv .venv
+```
+
+### 3. Activate the virtual environment
+Activate the environment based on your operating system:
+
+#### **Windows (Command Prompt):**
+```bash
+.venv\Scripts\activate.bat
+```
+
+#### **Windows (PowerShell):**
+```bash
+.venv\Scripts\Activate.ps1
+```
+
+#### **macOS / Linux:**
+```bash
+source .venv/bin/activate
+```
+
+### 4. Install dependencies
+Once the virtual environment is activated, install the required packages:
+
+```bash
+pip install -r requirements.txt
+```
+
+### Deactivating
+When you are done working on the project, you can return to your system's global Python environment by running:
+
+```bash
+deactivate
+```
 
 ## Tools & Technologies
 - Python
