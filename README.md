@@ -21,6 +21,7 @@ This project demonstrates skills in data cleaning, exploratory data analysis (ED
 ```
 git clone <https://github.com/ashleyadehart/flash_floods_ky_2015_2025>
 ```
+
 ### 2. Create a virtual environment
 Run the following command to create a virtual environment in a folder named `.venv`:
 
@@ -90,9 +91,14 @@ The analysis workflow includes:
 - Temporal clustering suggests potential links between seasonal weather patterns and event frequency.
 
 ## Data Sources
-- National Weather Service (NOAA Storm Events Database)
-- Weather API
+- [NOAA Storm Events Database](https://www.ncei.noaa.gov/stormevents/choosedates.jsp?statefips=21%2CKENTUCKY)
+- [Weather API](https://www.weatherapi.com/)
+- [Visual Crossing API](https://www.visualcrossing.com/)
 - Datasets used in this project can be found in the `data/` folder
+
+## AI Usage
+Generative AI was implemented in the following ways:
+- Creation of a sample README.md file that could be edited throughout the duration of the project.  
 
 ## Future Enhancements
 Planned future enhancements for this project include expanding the analytical depth and integrating geospatial analysis techniques to better understand flash flooding patterns across Kentucky.
