@@ -11,7 +11,8 @@ This project demonstrates skills in data cleaning, exploratory data analysis (ED
 │ ├── raw/
 │ ├── processed/
 ├── notebooks/
-├── plots
+├── plots/
+├── scripts/
 ├── README.md 
 └── requirements.txt
 ```
@@ -97,7 +98,7 @@ The analysis workflow includes:
 - Datasets used in this project can be found in the `data/` folder
 
 ## AI Usage
-Generative AI was implemented in the following ways:
+Generative AI was implemented in the following way(s):
 - Creation of a sample README.md file that could be edited throughout the duration of the project.  
 
 ## Future Enhancements
