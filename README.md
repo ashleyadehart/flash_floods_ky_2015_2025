@@ -17,7 +17,8 @@ This project demonstrates skills in data cleaning, exploratory data analysis (ED
 ```
 
 ## How to Run This Project
-1. Clone this repository.
+### 1. Clone this repository
+
 ### 2. Create a virtual environment
 Run the following command to create a virtual environment in a folder named `.venv`:
 
