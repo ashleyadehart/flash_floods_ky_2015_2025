@@ -99,7 +99,8 @@ The analysis workflow includes:
 
 ## AI Usage
 Generative AI was implemented in the following way(s):
-- Creation of a sample README.md file that could be edited throughout the duration of the project.  
+- Creation of a sample README.md file that could be edited throughout the duration of the project.
+- Generation of a Python script that calls daily weather conditions for each row in the flash_floods_ky_2015_2025_cleaned.csv file. 
 
 ## Future Enhancements
 Planned future enhancements for this project include expanding the analytical depth and integrating geospatial analysis techniques to better understand flash flooding patterns across Kentucky.
