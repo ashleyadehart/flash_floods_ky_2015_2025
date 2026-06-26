@@ -1,5 +1,5 @@
-# Conversion Python Script
-## This code was generated via ChatGPT.
+# Conversions Python Script
+## This code was generated via ChatGPT. This code was used to convert existing variables such as temperature, precipitation, etc., along with creating new variables such as DAYLIGHT_HOURS, HEAVY_RAIN_FLAG, RAIN_TO_PRECIP_RATIO, LARGE_TEMP_SWING, and WIND_DIRECTION_CARDINAL.
 
 import pandas as pd
 import numpy as np
@@ -131,13 +131,6 @@ df["WIND_DIRECTION_CARDINAL"] = (
 # ===================================
 # OPTIONAL DERIVED VARIABLES
 # ===================================
-
-# Rainfall intensity approximation
-df["RAIN_TO_PRECIP_RATIO"] = np.where(
-    df["PRECIP_SUM"] > 0,
-    df["RAIN_SUM"] / df["PRECIP_SUM"],
-    np.nan
-)
 
 # Large temperature swing flag
 df["LARGE_TEMP_SWING"] = np.where(

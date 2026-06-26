@@ -1,5 +1,5 @@
 # Moon Phases API Script
-## This script was generated via Google AI
+## This script was generated via Google AI. The purpose of this script was to calculate the moon phase and illumination percentage for each flash flooding event in the dataset based on the event's date and location. The script uses the `ephem` library to perform astronomical calculations and adds two new columns to the dataset: `MOON_PHASE_NAME` and `MOON_ILLUMINATION_PCT`.
 
 import pandas as pd
 import ephem
