@@ -14,7 +14,7 @@ OUTPUT_FILE = "data/processed/flash_floods_ky_nlcd_results.csv"
 # =====================================================
 # ARC GIS API KEY (ADD YOUR KEY HERE)
 # =====================================================
-API_KEY = "AAPTa1Rok5l9VnqKG5MxDfjKJWg..aCV_xIUZ2PeYQMawr3DyXTFhwvYH-tkA51nrwSmx5CpJHiYtKiTV8zbLrB3aiu4m3bdNbgv99yUEBDqpjcGIYsdk8m3HOp0S1tp9QdQsEHwhspcP98xJvquNI15E33-9BBxzdm_aNw89-5W3YD_31zrX09R6JRrIb_DznD-zf_h-Jf27Aj0iSLx39o5cWSGqvMNB2SisfLHIi6SYX_yXJ1xojFNVxjB_RWTmp_fKDIiq8ukkLVHkFZg.AT1_ZcA0oGTQ"
+API_KEY = "YOUR API KEY GOES HERE"
 
 # =====================================================
 # CONNECT & INITIALIZE LAYERS
