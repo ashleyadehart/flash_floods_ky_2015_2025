@@ -6,8 +6,8 @@ import ephem
 from datetime import datetime
 
 # Configuration
-input_file = "../data/processed/flash_floods_ky_weather_conditions_converted.csv"
-output_file = "../data/processed/flash_floods_ky_weather_conditions_moon_data.csv"
+input_file = "data/processed/flash_floods_ky_weather_conditions_cleaned.csv"
+output_file = "data/processed/flash_floods_ky_moon_data.csv"
 
 # Load data into a Pandas DataFrame
 df = pd.read_csv(input_file)
