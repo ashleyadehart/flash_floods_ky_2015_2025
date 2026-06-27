@@ -1,3 +1,6 @@
+# Oceanic Nino Index Script
+# This code was generated via Google AI. The purpose of this code was to gather ONI data for every row in the flash_floods_ky_event_info.csv file for further analysis.
+
 from datetime import datetime
 from pathlib import Path
 import pandas as pd
