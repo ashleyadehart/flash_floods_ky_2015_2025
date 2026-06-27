@@ -1,127 +1,142 @@
 # Weather Conditions API Script
 # This code was generated via Open-Meteo and ChatGPT. This code was used to retrieve weather conditions for each flash flooding event in the dataset based on the event's date and location. The script uses the Open-Meteo API to fetch daily weather data, including temperature, precipitation, wind speed, etc. The retrieved weather data is then merged with the original dataset and saved as a new CSV file for further analysis.
 
-# ---------------------------
-# Import Libraries
-# ---------------------------
-import openmeteo_requests
-import pandas as pd
-import requests_cache
-from retry_requests import retry
 import time
+import requests
+import pandas as pd
+from requests.adapters import HTTPAdapter
+from urllib3.util.retry import Retry
 
-# ---------------------------
-# Setup Open-Meteo Client
-# ---------------------------
-cache_session = requests_cache.CachedSession(".cache", expire_after=-1)
-retry_session = retry(cache_session, retries=5, backoff_factor=0.2)
-openmeteo = openmeteo_requests.Client(session=retry_session)
 
-# ---------------------------
-# Load CSV
-# ---------------------------
-df = pd.read_csv(
-    "data/processed/flash_floods_ky_2015_2025_cleaned.csv"
-)
+def create_session():
+    session = requests.Session()
 
-# ---------------------------
-# Function to Get Weather
-# ---------------------------
-def get_weather(row):
+    retries = Retry(
+        total=5,
+        connect=5,
+        read=5,
+        backoff_factor=2,
+        status_forcelist=[429, 500, 502, 503, 504],
+        allowed_methods=["GET"]
+    )
 
-    lat = row["BEGIN_LAT"]
-    lon = row["BEGIN_LON"]
+    adapter = HTTPAdapter(max_retries=retries)
+    session.mount("https://", adapter)
 
-    date = pd.to_datetime(row["BEGIN_DATE"]).strftime("%Y-%m-%d")
+    return session
 
-    url = "https://archive-api.open-meteo.com/v1/archive"
+
+def get_historical_weather_row(session, api_key, location, date_str):
+    base_url = "https://api.weatherapi.com/v1/history.json"
 
     params = {
-        "latitude": lat,
-        "longitude": lon,
-        "start_date": date,
-        "end_date": date,
-        "daily": [
-            "temperature_2m_mean",
-            "sunrise",
-            "sunset",
-            "precipitation_sum",
-            "rain_sum",
-            "precipitation_hours",
-            "wind_speed_10m_max",
-            "wind_gusts_10m_max",
-            "wind_direction_10m_dominant",
-            "temperature_2m_max",
-            "temperature_2m_min"
-        ],
-        "temperature_unit": "fahrenheit",
-        "wind_speed_unit": "mph",
-        "precipitation_unit": "inch",
-        "timezone": "America/New_York"
+        "key": api_key,
+        "q": f"{location}, Kentucky, USA",
+        "dt": date_str
     }
 
+    fields = [
+        "MAXTEMP_F", "MINTEMP_F", "AVGTEMP_F", "MAXWIND_MPH",
+        "TOTALPRECIP_IN", "AVGVIS_MILES", "AVGHUMIDITY",
+        "CONDITION_TEXT", "CONDITION_CODE", "UV",
+        "DAILY_WILL_IT_RAIN", "DAILY_CHANCE_OF_RAIN"
+    ]
+
+    result = {field: None for field in fields}
+
     try:
-        responses = openmeteo.weather_api(url, params=params)
-        response = responses[0]
+        response = session.get(base_url, params=params, timeout=30)
 
-        daily = response.Daily()
+        if response.status_code != 200:
+            print(f"Skipping {location} on {date_str}: API Status {response.status_code}")
+            print(response.text[:300])
+            return result
 
-        return {
-            "TEMP_MEAN_F": daily.Variables(0).ValuesAsNumpy()[0],
-            "SUNRISE": daily.Variables(1).ValuesInt64AsNumpy()[0],
-            "SUNSET": daily.Variables(2).ValuesInt64AsNumpy()[0],
-            "PRECIP_SUM_IN": daily.Variables(3).ValuesAsNumpy()[0],
-            "RAIN_SUM_IN": daily.Variables(4).ValuesAsNumpy()[0],
-            "PRECIP_HOURS": daily.Variables(5).ValuesAsNumpy()[0],
-            "MAX_WIND_MPH": daily.Variables(6).ValuesAsNumpy()[0],
-            "MAX_GUST_MPH": daily.Variables(7).ValuesAsNumpy()[0],
-            "WIND_DIRECTION": daily.Variables(8).ValuesAsNumpy()[0],
-            "TEMP_MAX_F": daily.Variables(9).ValuesAsNumpy()[0],
-            "TEMP_MIN_F": daily.Variables(10).ValuesAsNumpy()[0]
-        }
+        data = response.json()
+
+        forecast_day = data["forecast"]["forecastday"][0]["day"]
+
+        result["MAXTEMP_F"] = forecast_day.get("maxtemp_f")
+        result["MINTEMP_F"] = forecast_day.get("mintemp_f")
+        result["AVGTEMP_F"] = forecast_day.get("avgtemp_f")
+        result["MAXWIND_MPH"] = forecast_day.get("maxwind_mph")
+        result["TOTALPRECIP_IN"] = forecast_day.get("totalprecip_in")
+        result["AVGVIS_MILES"] = forecast_day.get("avgvis_miles")
+        result["AVGHUMIDITY"] = forecast_day.get("avghumidity")
+        result["CONDITION_TEXT"] = forecast_day.get("condition", {}).get("text")
+        result["CONDITION_CODE"] = forecast_day.get("condition", {}).get("code")
+        result["UV"] = forecast_day.get("uv")
+        result["DAILY_WILL_IT_RAIN"] = forecast_day.get("daily_will_it_rain")
+        result["DAILY_CHANCE_OF_RAIN"] = forecast_day.get("daily_chance_of_rain")
+
+    except requests.exceptions.Timeout:
+        print(f"Timeout for {location} on {date_str}")
+
+    except requests.exceptions.RequestException as e:
+        print(f"Request error for {location} on {date_str}: {e}")
+
+    except KeyError as e:
+        print(f"Missing expected data for {location} on {date_str}: {e}")
 
     except Exception as e:
-        print(f"Error row: {e}")
+        print(f"Error processing {location} on {date_str}: {e}")
 
-        return {
-            "TEMP_MEAN_F": None,
-            "SUNRISE": None,
-            "SUNSET": None,
-            "PRECIP_SUM_IN": None,
-            "RAIN_SUM_IN": None,
-            "PRECIP_HOURS": None,
-            "MAX_WIND_MPH": None,
-            "MAX_GUST_MPH": None,
-            "WIND_DIRECTION": None,
-            "TEMP_MAX_F": None,
-            "TEMP_MIN_F": None
-        }
+    return result
 
-# ---------------------------
-# Loop Through Rows
-# ---------------------------
-weather_results = []
 
-for i, row in df.iterrows():
-    weather = get_weather(row)
-    weather_results.append(weather)
+def process_weather_dataset(input_csv, output_csv, api_key):
+    print(f"Loading dataset: {input_csv}")
+    df = pd.read_csv(input_csv)
 
-    print(f"Processed row {i}")
+    required_columns = ["BEGIN_LOCATION", "BEGIN_DATE"]
 
-    time.sleep(0.2)
+    for col in required_columns:
+        if col not in df.columns:
+            raise ValueError(f"Missing required column: {col}")
 
-# ---------------------------
-# Merge Weather Data
-# ---------------------------
-weather_df = pd.DataFrame(weather_results)
-df = pd.concat([df, weather_df], axis=1)
+    df["BEGIN_DATE_CLEANED"] = pd.to_datetime(df["BEGIN_DATE"]).dt.strftime("%Y-%m-%d")
 
-# ---------------------------
-# Save
-# ---------------------------
-df.to_csv(
-    "data/raw/flash_floods_ky_weather_conditions.csv",
-    index=False
-)
+    session = create_session()
+    collected_data = []
 
-print("Finished!")
+    print("Starting historical weather data collection...")
+
+    for idx, row in df.iterrows():
+        loc = row["BEGIN_LOCATION"]
+        date_str = row["BEGIN_DATE_CLEANED"]
+
+        print(f"Processing row {idx + 1}/{len(df)}: {loc} on {date_str}")
+
+        weather_data = get_historical_weather_row(
+            session=session,
+            api_key=api_key,
+            location=loc,
+            date_str=date_str
+        )
+
+        collected_data.append(weather_data)
+
+        # Save progress every 50 rows
+        if (idx + 1) % 50 == 0:
+            temp_weather_df = pd.DataFrame(collected_data)
+            temp_final_df = pd.concat([df.iloc[:idx + 1].reset_index(drop=True), temp_weather_df], axis=1)
+            temp_final_df.drop(columns=["BEGIN_DATE_CLEANED"]).to_csv(output_csv, index=False)
+            print(f"Progress saved through row {idx + 1}")
+
+        time.sleep(1)
+
+    weather_df = pd.DataFrame(collected_data)
+    final_df = pd.concat([df.reset_index(drop=True), weather_df], axis=1)
+
+    final_df = final_df.drop(columns=["BEGIN_DATE_CLEANED"])
+
+    final_df.to_csv(output_csv, index=False)
+    print(f"Successfully saved complete dataset to: {output_csv}")
+
+
+if __name__ == "__main__":
+    API_KEY = "YOUR API KEY GOES HERE"
+    INPUT_FILE = "data/processed/flash_floods_ky_2015_2025_cleaned.csv"
+    OUTPUT_FILE = "data/raw/flash_floods_ky_weather_conditions.csv"
+
+    process_weather_dataset(INPUT_FILE, OUTPUT_FILE, API_KEY)
