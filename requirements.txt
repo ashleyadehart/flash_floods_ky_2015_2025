@@ -6,6 +6,7 @@ cachetools==7.1.4
 cattrs==26.1.0
 certifi==2026.5.20
 cffi==2.0.0
+cftime==1.6.5
 charset-normalizer==3.4.7
 click==8.4.1
 cloudpickle==3.1.2
@@ -44,6 +45,7 @@ matplotlib==3.10.9
 matplotlib-inline==0.2.2
 more-itertools==11.1.0
 nest-asyncio==1.6.0
+netCDF4==1.7.4
 networkx==3.6.1
 niquests==3.19.0
 numpy==2.4.6
@@ -99,4 +101,5 @@ urllib3-future==2.21.902
 wassima==2.1.0
 wcwidth==0.7.0
 websocket-client==1.9.0
+xarray==2026.4.0
 yarg==0.1.10
