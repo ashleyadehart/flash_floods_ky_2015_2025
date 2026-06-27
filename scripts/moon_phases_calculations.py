@@ -7,7 +7,7 @@ import ephem
 import pandas as pd
 
 # CONFIGURATION & CONSTANTS
-INPUT_FILE = Path("data/processed/flash_floods_ky_weather_conditions_cleaned.csv")
+INPUT_FILE = Path("data/processed/flash_floods_ky_event_info.csv")
 OUTPUT_FILE = Path("data/processed/flash_floods_ky_moon_data.csv")
 
 
