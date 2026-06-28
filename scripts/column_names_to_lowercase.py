@@ -1,12 +1,15 @@
+# Column Names to Lowercase Script
+## This code was created via Google AI. The purpose of this script is to reads CSV files in a folder, convert column names to lowercase, and overwrite the original files to show the lowercase column names
+
 from pathlib import Path
 import pandas as pd
 
 
 def overwrite_csv_columns_to_lowercase(folder_path: str) -> None:
-    """Reads all CSV files in a folder, converts column names to lowercase,
-
-    and overwrites the original files completely.
     """
+    Reads all CSV files in a folder, converts column names to lowercase, and overwrites the original files to show the lowercase column names.
+    """
+
     target_dir = Path(folder_path)
 
     # Validate that the folder exists
