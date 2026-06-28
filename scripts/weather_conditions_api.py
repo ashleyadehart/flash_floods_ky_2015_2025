@@ -1,5 +1,5 @@
 # Weather Conditions API Script
-# This code was generated via Open-Meteo and ChatGPT. This code was used to retrieve weather conditions for each flash flooding event in the dataset based on the event's date and location. The script uses the Open-Meteo API to fetch daily weather data, including temperature, precipitation, wind speed, etc. The retrieved weather data is then merged with the original dataset and saved as a new CSV file for further analysis.
+# This code was generated via Weather API and Google AI. This code was used to retrieve weather conditions for each flash flooding event in the dataset based on the event's date and location. The script uses the Open-Meteo API to fetch daily weather data, including temperature, precipitation, wind speed, etc. The retrieved weather data is then merged with the original dataset and saved as a new CSV file for further analysis.
 
 import time
 import requests
