@@ -50,7 +50,7 @@ def overwrite_csv_columns_to_lowercase(folder_path: str) -> None:
 
 if __name__ == "__main__":
     # Replace this with the path to your folder
-    FOLDER_TO_UPDATE = "data/raw"
+    FOLDER_TO_UPDATE = "data/"
 
     # Run the function
     overwrite_csv_columns_to_lowercase(FOLDER_TO_UPDATE)
