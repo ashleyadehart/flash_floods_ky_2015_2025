@@ -7,7 +7,8 @@ import pandas as pd
 
 def overwrite_csv_columns_to_lowercase(folder_path: str) -> None:
     """
-    Reads all CSV files in a folder, converts column names to lowercase, and overwrites the original files to show the lowercase column names.
+    Reads all CSV files in a folder, converts column names to lowercase, 
+    and overwrites the original files to show the lowercase column names.
     """
 
     target_dir = Path(folder_path)

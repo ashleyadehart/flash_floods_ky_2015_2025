@@ -1,0 +1,80 @@
+DROP DATABASE IF EXISTS flash_flood_events_db;
+CREATE DATABASE flash_flood_events_db;
+USE flash_flood_events_db;
+
+CREATE TABLE oni_data (
+    oni_id INT AUTO_INCREMENT PRIMARY KEY,
+    oni_anomaly DECIMAL(4,2),
+    enso_phase VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE event_info (
+    event_id BIGINT PRIMARY KEY,
+    oni_id INT,
+    county_name VARCHAR(100),
+    begin_location VARCHAR(100),
+    begin_date DATE,
+    begin_time TIME,
+    begin_range DECIMAL(8,2),
+    end_range DECIMAL(8,2),
+    end_location VARCHAR(100),
+    end_date DATE,
+    end_time TIME,
+    begin_lat DECIMAL(9,6),
+    begin_lon DECIMAL(9,6),
+    end_lat DECIMAL(9,6),
+    end_lon DECIMAL(9,6),
+    year INT,
+
+    CONSTRAINT fk_event_oni
+        FOREIGN KEY (oni_id)
+        REFERENCES oni_data(oni_id)
+);
+
+CREATE TABLE moon_data (
+    moon_id INT AUTO_INCREMENT PRIMARY KEY,
+    event_id BIGINT NOT NULL UNIQUE,
+    moon_phase_name VARCHAR(50),
+    moon_illumination_pct DECIMAL(5,2),
+
+    CONSTRAINT fk_moon_event
+        FOREIGN KEY (event_id)
+        REFERENCES event_info(event_id)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE geographical_data (
+    geo_id INT AUTO_INCREMENT PRIMARY KEY,
+    event_id BIGINT NOT NULL UNIQUE,
+    nlcd_code INT,
+    nlcd_class VARCHAR(100),
+    elevation_m DECIMAL(8,2),
+    impervious_surface_pct DECIMAL(5,2),
+
+    CONSTRAINT fk_geo_event
+        FOREIGN KEY (event_id)
+        REFERENCES event_info(event_id)
+        ON DELETE CASCADE
+);
+
+CREATE TABLE weather_conditions (
+    wc_id INT AUTO_INCREMENT PRIMARY KEY,
+    event_id BIGINT NOT NULL UNIQUE,
+    maxtemp_f DECIMAL(5,2),
+    mintemp_f DECIMAL(5,2),
+    avgtemp_f DECIMAL(5,2),
+    maxwind_mph DECIMAL(5,2),
+    totalprecip_in DECIMAL(6,2),
+    avgvis_miles DECIMAL(5,2),
+    avghumidity DECIMAL(5,2),
+    condition_text VARCHAR(100),
+    condition_code INT,
+    uv DECIMAL(4,1),
+    daily_will_it_rain TINYINT,
+    daily_chance_of_rain DECIMAL(5,2),
+
+    CONSTRAINT fk_weather_event
+        FOREIGN KEY (event_id)
+        REFERENCES event_info(event_id)
+        ON DELETE CASCADE
+);
