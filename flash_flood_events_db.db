@@ -2,15 +2,8 @@ DROP DATABASE IF EXISTS flash_flood_events_db;
 CREATE DATABASE flash_flood_events_db;
 USE flash_flood_events_db;
 
-CREATE TABLE oni_data (
-    oni_id INT AUTO_INCREMENT PRIMARY KEY,
-    oni_anomaly DECIMAL(4,2),
-    enso_phase VARCHAR(50) NOT NULL
-);
-
 CREATE TABLE event_info (
     event_id BIGINT PRIMARY KEY,
-    oni_id INT,
     county_name VARCHAR(100),
     begin_location VARCHAR(100),
     begin_date DATE,
@@ -24,11 +17,14 @@ CREATE TABLE event_info (
     begin_lon DECIMAL(9,6),
     end_lat DECIMAL(9,6),
     end_lon DECIMAL(9,6),
-    year INT,
+    year INT
+);
 
-    CONSTRAINT fk_event_oni
-        FOREIGN KEY (oni_id)
-        REFERENCES oni_data(oni_id)
+CREATE TABLE oni_data (
+    oni_id BIGINT PRIMARY KEY,
+    oni_anomaly DECIMAL(4,2),
+    enso_phase VARCHAR(50) NOT NULL,
+    CONSTRAINT fk_oni_event FOREIGN KEY (oni_id) REFERENCES event_info(event_id) ON DELETE CASCADE
 );
 
 CREATE TABLE moon_data (
@@ -36,11 +32,7 @@ CREATE TABLE moon_data (
     event_id BIGINT NOT NULL UNIQUE,
     moon_phase_name VARCHAR(50),
     moon_illumination_pct DECIMAL(5,2),
-
-    CONSTRAINT fk_moon_event
-        FOREIGN KEY (event_id)
-        REFERENCES event_info(event_id)
-        ON DELETE CASCADE
+    CONSTRAINT fk_moon_event FOREIGN KEY (event_id) REFERENCES event_info(event_id) ON DELETE CASCADE
 );
 
 CREATE TABLE geographical_data (
@@ -50,11 +42,7 @@ CREATE TABLE geographical_data (
     nlcd_class VARCHAR(100),
     elevation_m DECIMAL(8,2),
     impervious_surface_pct DECIMAL(5,2),
-
-    CONSTRAINT fk_geo_event
-        FOREIGN KEY (event_id)
-        REFERENCES event_info(event_id)
-        ON DELETE CASCADE
+    CONSTRAINT fk_geo_event FOREIGN KEY (event_id) REFERENCES event_info(event_id) ON DELETE CASCADE
 );
 
 CREATE TABLE weather_conditions (
@@ -72,9 +60,5 @@ CREATE TABLE weather_conditions (
     uv DECIMAL(4,1),
     daily_will_it_rain TINYINT,
     daily_chance_of_rain DECIMAL(5,2),
-
-    CONSTRAINT fk_weather_event
-        FOREIGN KEY (event_id)
-        REFERENCES event_info(event_id)
-        ON DELETE CASCADE
+    CONSTRAINT fk_weather_event FOREIGN KEY (event_id) REFERENCES event_info(event_id) ON DELETE CASCADE
 );
