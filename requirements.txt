@@ -25,6 +25,7 @@ flatbuffers==25.9.23
 fonttools==4.63.0
 fsspec==2026.4.0
 geomet==1.1.0
+geopandas==1.1.4
 h11==0.16.0
 idna==3.18
 ipykernel==7.2.0
@@ -69,7 +70,9 @@ pydantic==2.13.4
 pydantic_core==2.46.4
 Pygments==2.20.0
 pylerc==4.1
+pyogrio==0.13.0
 pyparsing==3.3.2
+pyproj==3.7.2
 pyspnego==0.12.1
 python-dateutil==2.9.0.post0
 pywin32==312
@@ -84,6 +87,7 @@ requests-toolbelt==1.0.0
 retry-requests==2.0.0
 scipy==1.17.1
 seaborn==0.13.2
+shapely==2.1.2
 six==1.17.0
 sspilib==0.5.0
 stack-data==0.6.3
