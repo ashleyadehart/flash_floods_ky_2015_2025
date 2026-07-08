@@ -94,7 +94,8 @@ The analysis workflow includes:
 ## Data Sources
 - [NOAA Storm Events Database](https://www.ncei.noaa.gov/stormevents/choosedates.jsp?statefips=21%2CKENTUCKY)
 - [Weather API](https://www.weatherapi.com/)
-- [Visual Crossing API](https://www.visualcrossing.com/)
+- [NCEP Climate Prediction Center]( https://www.cpc.ncep.noaa.gov/data/indices/oni.ascii.txt)
+- [ArcGIS Online](https://www.arcgis.com/index.html)
 - Datasets used in this project can be found in the `data/` folder
 
 ## AI Usage
