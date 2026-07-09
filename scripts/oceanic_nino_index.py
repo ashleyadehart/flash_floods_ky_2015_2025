@@ -7,8 +7,8 @@ import pandas as pd
 
 # Paths to local input and output files
 INPUT_FILE = "data/processed/flash_floods_ky_event_info.csv"
-OUTPUT_FILE = "data/processed/flash_floods_ky_oni_results.csv"
-DATE_COLUMN = "BEGIN_DATE"  
+OUTPUT_FILE = "data/processed/flash_floods_ky_oni_data.csv"
+DATE_COLUMN = "begin_date"
 
 # Point directly to downloaded backup file
 LOCAL_BACKUP_FILE = "data/raw/oni_backup.txt"
@@ -57,20 +57,20 @@ def parse_oni_text(text_data: str) -> pd.DataFrame:
         return "Neutral"
 
     df_oni["enso_phase"] = df_oni["ANOM"].apply(classify_enso)
-    df_oni = df_oni[["date", "ANOM", "enso_phase"]].rename(
-        columns={"ANOM": "oni_anomaly"}
+
+    # Modified to include 'SEAS' and rename it to 'oni_season'
+    df_oni = df_oni[["date", "SEAS", "ANOM", "enso_phase"]].rename(
+        columns={"SEAS": "oni_season", "ANOM": "oni_anomaly"}
     )
+
     return df_oni.sort_values("date").reset_index(drop=True)
 
 
 def load_local_oni(backup_filename: str) -> pd.DataFrame:
     """Reads the local ONI backup file and prepares it for merging."""
     backup_path = Path(backup_filename)
-
     if not backup_path.exists():
-        print(
-            f"[-] Critical Error: Local file '{backup_filename}' not found."
-        )
+        print(f"[-] Critical Error: Local file '{backup_filename}' not found.")
         print(
             "Please ensure you have placed 'oni_backup.txt' in the same folder as this script."
         )
@@ -105,7 +105,6 @@ def save_dataset(df: pd.DataFrame, file_path: Path) -> None:
         raise ValueError(f"Unsupported file format '{suffix}'. Use CSV or Excel.")
 
 
-
 def main():
     input_path = Path(INPUT_FILE)
     output_path = Path(OUTPUT_FILE)
@@ -122,9 +121,7 @@ def main():
         return
 
     if DATE_COLUMN not in flood_df.columns:
-        print(
-            f"[-] Error: Target column '{DATE_COLUMN}' not found in input file."
-        )
+        print(f"[-] Error: Target column '{DATE_COLUMN}' not found in input file.")
         print(f"Available columns: {list(flood_df.columns)}")
         return
 
@@ -167,3 +164,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
