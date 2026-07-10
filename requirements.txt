@@ -20,12 +20,14 @@ debugpy==1.8.21
 decorator==5.3.1
 docopt==0.6.2
 ephem==4.2.1
+eralchemy2==1.4.1
 executing==2.2.1
 flatbuffers==25.9.23
 fonttools==4.63.0
 fsspec==2026.4.0
 geomet==1.1.0
 geopandas==1.1.4
+greenlet==3.5.3
 h11==0.16.0
 idna==3.18
 ipykernel==7.2.0
@@ -71,6 +73,7 @@ pycparser==3.0
 pydantic==2.13.4
 pydantic_core==2.46.4
 Pygments==2.20.0
+pygraphviz==2.0
 pylerc==4.1
 pyogrio==0.13.0
 pyparsing==3.3.2
@@ -91,6 +94,7 @@ scipy==1.17.1
 seaborn==0.13.2
 shapely==2.1.2
 six==1.17.0
+SQLAlchemy==2.0.51
 sspilib==0.5.0
 stack-data==0.6.3
 toolz==1.1.0
