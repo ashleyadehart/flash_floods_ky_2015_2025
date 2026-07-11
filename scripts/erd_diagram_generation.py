@@ -31,10 +31,26 @@ class EventInfo(Base):
     duration_minutes = Column(Float)
     duration_hours = Column(Float)
     
+    impact_data = relationship("ImpactData", back_populates="event", uselist=False)
     weather_conditions = relationship("WeatherConditions", back_populates="event", uselist=False)
     moon_data = relationship("MoonData", back_populates="event", uselist=False)
     oni_data = relationship("OniData", back_populates="event", uselist=False)
     nlcd_data = relationship("NlcdData", back_populates="event", uselist=False)
+
+
+class ImpactData(Base):
+    __tablename__ = 'impact_data'
+    
+    event_id = Column(String, ForeignKey('event_info.event_id'), primary_key=True)
+    county_name = Column(String)
+    deaths_direct = Column(Integer)
+    injuries_direct = Column(Integer)
+    damage_property_num = Column(Integer)
+    damage_number_crops = Column(Integer)
+    injuries_direct = Column(Integer)
+    deaths_direct = Column(Integer)
+    
+    event = relationship("EventInfo", back_populates="impact_data")
 
 
 class WeatherConditions(Base):
