@@ -33,7 +33,7 @@ class EventInfo(Base):
     
     impact_data = relationship("ImpactData", back_populates="event", uselist=False)
     weather_conditions = relationship("WeatherConditions", back_populates="event", uselist=False)
-    moon_data = relationship("MoonData", back_populates="event", uselist=False)
+    moon_sun_data = relationship("MoonData", back_populates="event", uselist=False)
     oni_data = relationship("OniData", back_populates="event", uselist=False)
     nlcd_data = relationship("NlcdData", back_populates="event", uselist=False)
 
@@ -74,14 +74,19 @@ class WeatherConditions(Base):
 
 
 class MoonData(Base):
-    __tablename__ = 'moon_data'
+    __tablename__ = 'moon_sun_data'
     
     event_id = Column(String, ForeignKey('event_info.event_id'), primary_key=True)
-    year = Column(Integer)
+    sun_altitude_deg = Column(Float)
+    sun_azimuth_deg = Column(Float)
+    sunrise_utc = Column(String)
+    sunset_utc = Column(String)
+    moon_altitude_deg = Column(Float)
+    moon_azimuth_deg = Column(Float)
     moon_phase_name = Column(String)
     moon_illumination_pct = Column(Float)
     
-    event = relationship("EventInfo", back_populates="moon_data")
+    event = relationship("EventInfo", back_populates="moon_sun_data")
 
 
 class OniData(Base):
