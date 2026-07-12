@@ -1,7 +1,7 @@
 # Kentucky Flash Flooding Events, Frequency, & Severity Data Analysis
 
 ## Project Overview
-This project analyzes flash flooding events in the state of Kentucky from 2015–2025 to determine whether there is an observable increase in event frequency over time, along with examining other variables that may impact severity of flash flooding events.
+This project analyzes flash flooding events in the state of Kentucky from 2015–2025 to determine whether there has been an observable increase in event frequency over time, along with examining other variables that may impact severity of these flash flooding events.
 
 This project demonstrates skills in data cleaning, exploratory data analysis (EDA), time-series aggregation, data visualization using Python, and SQL querying.
 
@@ -14,6 +14,7 @@ This project demonstrates skills in data cleaning, exploratory data analysis (ED
 ├── plots/
 ├── scripts/
 ├── sql/
+├── .gitignore
 ├── README.md 
 └── requirements.txt
 ```
@@ -77,7 +78,7 @@ deactivate
 - Which counties experience the most flash flooding activity?
 - What reporting sources most frequently document these events?
 - Are there observable temporal or geographic clustering patterns?
-- Does climate patterns, moon and sun position, and weather conditions contribute to the severity of flash flooding events?
+- Does climate patterns, moon and sun position, and weather conditions increase the severity of flash flooding events?
 
 ## Methodology
 The analysis workflow includes:
