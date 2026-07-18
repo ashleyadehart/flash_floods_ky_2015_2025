@@ -1,8 +1,10 @@
 # Oceanic Nino Index Script
-## This code was generated via Google AI. The purpose of this code was to gather ONI data for every row in the flash_floods_ky_event_info.csv file for further analysis.
+## This code was generated via Claude Code. 
+## The purpose of this code is to gather ONI data for every row in the flash_floods_ky_event_info.csv file for further analysis.
 
-from datetime import datetime
+import io
 from pathlib import Path
+import numpy as np
 import pandas as pd
 
 # Paths to local input and output files
@@ -16,13 +18,11 @@ LOCAL_BACKUP_FILE = "data/raw/oni_backup.txt"
 
 def parse_oni_text(text_data: str) -> pd.DataFrame:
     """Parses raw NOAA ASCII text tables into a clean DataFrame."""
-    lines = text_data.strip().split("\n")
-    header = lines[0].split()
-    data_rows = [line.split() for line in lines[1:]]
-
-    df_oni = pd.DataFrame(data_rows, columns=header)
-    df_oni["YR"] = df_oni["YR"].astype(int)
-    df_oni["ANOM"] = df_oni["ANOM"].astype(float)
+    df_oni = pd.read_csv(
+        io.StringIO(text_data.strip()),
+        sep=r"\s+",
+        dtype={"YR": int, "ANOM": float},
+    )
 
     # Map 3-letter seasons to a central calendar month index
     season_to_month = {
@@ -41,22 +41,17 @@ def parse_oni_text(text_data: str) -> pd.DataFrame:
     }
     df_oni["month"] = df_oni["SEAS"].map(season_to_month)
 
-    # Create datetime timestamp set to the first day of the month
+    # Create datetime timestamp set to the first day of the month (vectorized)
     df_oni["date"] = pd.to_datetime(
-        df_oni.apply(
-            lambda row: datetime(int(row["YR"]), int(row["month"]), 1), axis=1
-        )
+        dict(year=df_oni["YR"], month=df_oni["month"], day=1)
     )
 
-    # Classify ENSO Phase based on standard +/- 0.5°C threshold
-    def classify_enso(anom: float) -> str:
-        if anom >= 0.5:
-            return "El Nino"
-        elif anom <= -0.5:
-            return "La Nina"
-        return "Neutral"
-
-    df_oni["enso_phase"] = df_oni["ANOM"].apply(classify_enso)
+    # Classify ENSO Phase based on standard +/- 0.5°C threshold (vectorized)
+    df_oni["enso_phase"] = np.select(
+        [df_oni["ANOM"] >= 0.5, df_oni["ANOM"] <= -0.5],
+        ["El Nino", "La Nina"],
+        default="Neutral",
+    )
 
     # Modified to include 'SEAS' and rename it to 'oni_season'
     df_oni = df_oni[["date", "SEAS", "ANOM", "enso_phase"]].rename(
@@ -109,14 +104,14 @@ def main():
     input_path = Path(INPUT_FILE)
     output_path = Path(OUTPUT_FILE)
 
-    # 1. Verify and load flash flood dataset
+    # Verify and load flash flood dataset
     if not input_path.exists():
         print(f"[-] Error: Input file '{input_path}' does not exist.")
         return
 
     try:
         flood_df = load_dataset(input_path)
-    except Exception as e:
+    except (ValueError, OSError) as e:
         print(f"[-] Failed to read input file: {e}")
         return
 
@@ -125,19 +120,18 @@ def main():
         print(f"Available columns: {list(flood_df.columns)}")
         return
 
-    # 2. Parse the dates and cache the original file ordering
+    # Parse the dates and sort chronologically for the as-of merge
     flood_df[DATE_COLUMN] = pd.to_datetime(flood_df[DATE_COLUMN])
-    original_order = flood_df.index
     flood_df = flood_df.sort_values(DATE_COLUMN)
 
-    # 3. Process the local offline text index
+    # Process the local offline text index
     try:
         oni_df = load_local_oni(LOCAL_BACKUP_FILE)
-    except Exception as e:
+    except (FileNotFoundError, ValueError, KeyError) as e:
         print(f"[-] Processing local index failed: {e}")
         return
 
-    # 4. Perform the closest preceding historical match (as of date merge)
+    # Perform the closest preceding historical match (as of date merge)
     print("[+] Merging flash flood rows with historical climate phases...")
     enriched_df = pd.merge_asof(
         flood_df,
@@ -147,21 +141,31 @@ def main():
         direction="backward",
     )
 
-    # Clean up tracking date duplicates and restore initial dataset order
+    # Clean up tracking date duplicates and restore original file order.
+    # sort_values preserves the original index labels, so sorting the index
+    # back is equivalent to (and simpler than) tracking/restoring it manually.
     if "date" in enriched_df.columns:
         enriched_df = enriched_df.drop(columns=["date"])
-    enriched_df = enriched_df.loc[original_order].reset_index(drop=True)
+    enriched_df = enriched_df.sort_index().reset_index(drop=True)
 
-    # 5. Output file generation
+    # Keep only the identifier column, year column, and the newly added ONI columns
+    keep_columns = ["event_id", "oni_season", "year", "oni_anomaly", "enso_phase"]
+    missing_columns = [c for c in keep_columns if c not in enriched_df.columns]
+    if missing_columns:
+        print(f"[-] Error: Expected column(s) not found: {missing_columns}")
+        print(f"Available columns: {list(enriched_df.columns)}")
+        return
+    enriched_df = enriched_df[keep_columns]
+
+    # Output file generation
     print(f"[+] Writing enriched dataset out to: {output_path.name}")
     try:
         output_path.parent.mkdir(parents=True, exist_ok=True)
         save_dataset(enriched_df, output_path)
         print("[+] Process completed successfully!")
-    except Exception as e:
+    except (ValueError, OSError) as e:
         print(f"[-] Failed to write file: {e}")
 
 
 if __name__ == "__main__":
     main()
-

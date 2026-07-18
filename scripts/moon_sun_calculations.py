@@ -1,5 +1,6 @@
 # Moon & Sun Calculations API Script
-## This script was generated via Google AI. The purpose of this script is to calculate moon phases, illumination percentages, and sun data for each flash flooding event in the dataset based on the event's date and location.
+## This script was generated via Google AI Mode. 
+## The purpose of this code is to calculate moon phases, illumination percentages, and sun data for each flash flooding event in the dataset based on the event's date and location.
 
 from datetime import datetime
 from pathlib import Path

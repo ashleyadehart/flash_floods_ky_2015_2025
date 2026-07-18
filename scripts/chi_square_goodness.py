@@ -1,6 +1,6 @@
 # Chi-Square Goodness of Fit Script 
-## This code was generated via Google AI. 
-## The purpose of this script was to conduct a Chi-Square Goodness of Fit test on the moon data gathered for each flash flooding event.
+## This code was generated via Claude Code. 
+## The purpose of this code is to conduct a Chi-Square Goodness of Fit test on the moon data gathered for each flash flooding event.
 
 from pathlib import Path
 import pandas as pd
@@ -13,9 +13,18 @@ def analyze_moon_illumination(file_path: Path) -> None:
     # Create moon illumination bins
     bins = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100]
     labels = [
-        "0-10%", "10-20%", "20-30%", "30-40%", "40-50%", 
-        "50-60%", "60-70%", "70-80%", "80-90%", "90-100%"
+        "0-10%", 
+        "10-20%", 
+        "20-30%", 
+        "30-40%", 
+        "40-50%", 
+        "50-60%", 
+        "60-70%", 
+        "70-80%", 
+        "80-90%", 
+        "90-100%"
     ]
+    
     df["illumination_bin"] = pd.cut(
         df["moon_illumination_pct"], 
         bins=bins, 
@@ -42,7 +51,7 @@ def analyze_moon_illumination(file_path: Path) -> None:
 
 def main():
     # Configuration and localized constants
-    INPUT_FILE = Path("data/processed/flash_floods_ky_moon_data.csv")
+    INPUT_FILE = Path("data/processed/flash_floods_ky_moon_sun_data.csv")
     
     # Early file validation check
     if not INPUT_FILE.is_file():
