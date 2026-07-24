@@ -12,6 +12,7 @@ This project demonstrates skills in data cleaning, exploratory data analysis (ED
 │ ├── processed/
 ├── notebooks/
 ├── plots/
+│ ├── ky_yearly_flash_floods_maps/
 ├── scripts/
 ├── sql/
 ├── .gitignore
@@ -21,7 +22,7 @@ This project demonstrates skills in data cleaning, exploratory data analysis (ED
 
 ## How to Run This Project
 ### 1. Clone this repository
-```
+```bash
 git clone <https://github.com/ashleyadehart/flash_floods_ky_2015_2025>
 ```
 
