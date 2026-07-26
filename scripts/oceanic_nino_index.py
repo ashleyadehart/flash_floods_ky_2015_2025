@@ -142,8 +142,6 @@ def main():
     )
 
     # Clean up tracking date duplicates and restore original file order.
-    # sort_values preserves the original index labels, so sorting the index
-    # back is equivalent to (and simpler than) tracking/restoring it manually.
     if "date" in enriched_df.columns:
         enriched_df = enriched_df.drop(columns=["date"])
     enriched_df = enriched_df.sort_index().reset_index(drop=True)

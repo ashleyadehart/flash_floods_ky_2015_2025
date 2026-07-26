@@ -13,8 +13,12 @@ from dotenv import load_dotenv
 load_dotenv()  # reads variables from a .env file in the current directory into the environment
  
 # CONFIGURATION & CONSTANTS
+API_KEY = os.environ.get("ARCGIS_API_KEY")
+INPUT_FILE = Path("data/processed/flash_floods_ky_event_info.csv")
+OUTPUT_FILE = Path("data/processed/flash_floods_ky_nlcd_data.csv")
+
 ARCGIS_URL = "https://arcgis.com"
- 
+
 LAYER_IDS = {
     "nlcd": "32e2ccc6416746a9a72b4d216813f84f",
     "elev": "58a541efc59545e6b7137f961d7de883",
@@ -127,11 +131,6 @@ def fetch_geospatial_attributes(
  
  
 def main():
-    # Execution configurations
-    API_KEY = os.environ.get("ARCGIS_API_KEY")
-    INPUT_FILE = Path("data/processed/flash_floods_ky_event_info.csv")
-    OUTPUT_FILE = Path("data/processed/flash_floods_ky_nlcd_data.csv")
- 
     # Pre-execution environment checks
     if not INPUT_FILE.is_file():
         print(f"[Error] Source file not found at: {INPUT_FILE.resolve()}")
