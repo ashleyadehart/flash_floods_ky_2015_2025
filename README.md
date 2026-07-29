@@ -59,21 +59,17 @@ Once the virtual environment is activated, install the required packages:
 pip install -r requirements.txt
 ```
 
-### 5. Launch Jupyter Notebook
-Start the notebook server from your terminal:
-\`\`\`bash
-jupyter notebook
-\`\`\`
-*Alternatively, if you prefer the newer interface, you can run:*
-\`\`\`bash
-jupyter lab
-\`\`\`
+### 5. Open the Jupyter Notebook
+The project includes a Jupyter Notebook for exploring and analyzing the data.
 
-### 6. Open and Run the Notebook
-1. A browser window should automatically open at `http://localhost:8888`.
-2. In the file browser interface, click on your notebook file (e.g., `your_notebook.ipynb`).
-3. To run individual code cells, select the cell and press **Shift + Enter**.
-4. To run the entire notebook at once, click **Cell > Run All** from the top menu.
+1. Open the project folder in **VS Code**.
+2. In the Explorer panel, open the `notebooks` folder.
+3. Double-click the `flash_floods_ky_2015_2025.ipynb` file to open it.
+4. Click **Select Kernel** in the upper-right corner of the notebook.
+5. Select the Python environment used by the project.
+6. Run individual notebook cells using the **Run** button or select **Run All** to run all notebook cells at once.
+
+> **Note:** If VS Code prompts you to install the Python or Jupyter extensions, install the recommended extensions from Microsoft.
 
 ### Deactivating
 When you are done working on the project, you can return to your system's global Python environment by running:
