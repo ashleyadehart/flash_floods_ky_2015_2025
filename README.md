@@ -21,53 +21,63 @@ This project demonstrates skills in data cleaning, exploratory data analysis (ED
 ```
 
 ## How to Run This Project
-### 1. Clone this repository
-**bash**
+### 1. Clone This Repository
+
 ```bash
 git clone <https://github.com/ashleyadehart/flash_floods_ky_2015_2025>
 ```
 
-### 2. Create a virtual environment
+### 2. Create a Virtual Environment
 Run the following command to create a virtual environment in a folder named `.venv`:
 
-**bash**
 ```bash
 python -m venv .venv
 ```
 
-### 3. Activate the virtual environment
+### 3. Activate the Virtual Environment
 Activate the environment based on your operating system:
 
 #### **Windows (Command Prompt):**
-**bash**
 ```bash
 .venv\Scripts\activate.bat
 ```
 
 #### **Windows (PowerShell):**
-**bash**
 ```bash
 .venv\Scripts\Activate.ps1
 ```
 
 #### **macOS / Linux:**
-**bash**
 ```bash
 source .venv/bin/activate
 ```
 
-### 4. Install dependencies
+### 4. Install Dependencies
 Once the virtual environment is activated, install the required packages:
 
-**bash**
 ```bash
 pip install -r requirements.txt
 ```
 
+### 5. Launch Jupyter Notebook
+Start the notebook server from your terminal:
+\`\`\`bash
+jupyter notebook
+\`\`\`
+*Alternatively, if you prefer the newer interface, you can run:*
+\`\`\`bash
+jupyter lab
+\`\`\`
+
+### 6. Open and Run the Notebook
+1. A browser window should automatically open at `http://localhost:8888`.
+2. In the file browser interface, click on your notebook file (e.g., `your_notebook.ipynb`).
+3. To run individual code cells, select the cell and press **Shift + Enter**.
+4. To run the entire notebook at once, click **Cell > Run All** from the top menu.
+
 ### Deactivating
 When you are done working on the project, you can return to your system's global Python environment by running:
 
-**bash**
 ```bash
 deactivate
 ```
@@ -83,9 +93,9 @@ deactivate
 - Canva
 
 ## Key Analytical Questions
-- Has the frequency of flash flooding events in Kentucky increased from 2015 to 2025?
+- Has the frequency of flash flooding events in Kentucky increased from 2015 - 2025?
 - Which years show the highest concentration of events?
-- Which counties experience the most flash flooding activity?
+- Which counties have experienced the most flash flooding activity between 2015 - 2025?
 - What reporting sources most frequently document these events?
 - Are there observable temporal or geographic clustering patterns?
 - Does climate patterns, moon and sun position, and weather conditions increase the severity of flash flooding events?
@@ -103,6 +113,8 @@ The analysis workflow includes:
 - Certain counties show consistently higher event concentrations, suggesting localized vulnerability.
 - Emergency services and call center reports are among the most common documentation sources.
 - Temporal clustering suggests potential links between seasonal weather patterns and event frequency.
+- Kentucky flash-flood events were significantly unevenly distributed across moon-illumination levels, with substantially more events occurring during very low (0–10%) and very high (90–100%) illumination than expected. 
+- Annual flash flooding damage had a 200% percentage change between 2024 and 2025.
 
 ## Data Sources
 - [NOAA Storm Events Database](https://www.ncei.noaa.gov/stormevents/choosedates.jsp?statefips=21%2CKENTUCKY)
