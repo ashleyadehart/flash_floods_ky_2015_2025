@@ -24,7 +24,7 @@ This project demonstrates skills in data cleaning, exploratory data analysis (ED
 ### 1. Clone This Repository
 
 ```bash
-git clone <https://github.com/ashleyadehart/flash_floods_ky_2015_2025>
+git clone <https://github.com/ashleyadehart/flash_floods_ky_2015_2025.git>
 ```
 
 ### 2. Create a Virtual Environment
