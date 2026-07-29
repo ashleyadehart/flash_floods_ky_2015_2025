@@ -22,6 +22,7 @@ This project demonstrates skills in data cleaning, exploratory data analysis (ED
 
 ## How to Run This Project
 ### 1. Clone this repository
+**bash**
 ```bash
 git clone <https://github.com/ashleyadehart/flash_floods_ky_2015_2025>
 ```
@@ -29,6 +30,7 @@ git clone <https://github.com/ashleyadehart/flash_floods_ky_2015_2025>
 ### 2. Create a virtual environment
 Run the following command to create a virtual environment in a folder named `.venv`:
 
+**bash**
 ```bash
 python -m venv .venv
 ```
@@ -37,16 +39,19 @@ python -m venv .venv
 Activate the environment based on your operating system:
 
 #### **Windows (Command Prompt):**
+**bash**
 ```bash
 .venv\Scripts\activate.bat
 ```
 
 #### **Windows (PowerShell):**
+**bash**
 ```bash
 .venv\Scripts\Activate.ps1
 ```
 
 #### **macOS / Linux:**
+**bash**
 ```bash
 source .venv/bin/activate
 ```
@@ -54,6 +59,7 @@ source .venv/bin/activate
 ### 4. Install dependencies
 Once the virtual environment is activated, install the required packages:
 
+**bash**
 ```bash
 pip install -r requirements.txt
 ```
@@ -61,6 +67,7 @@ pip install -r requirements.txt
 ### Deactivating
 When you are done working on the project, you can return to your system's global Python environment by running:
 
+**bash**
 ```bash
 deactivate
 ```
@@ -72,6 +79,8 @@ deactivate
 - Matplotlib
 - Seaborn
 - Jupyter Notebook
+- QGIS
+- Canva
 
 ## Key Analytical Questions
 - Has the frequency of flash flooding events in Kentucky increased from 2015 to 2025?
@@ -105,13 +114,13 @@ The analysis workflow includes:
 ## AI Usage
 Generative AI was implemented in the following way(s):
 - Creation of a sample README.md file that could be edited throughout the duration of the project.
-- Generation of a Python script that calls daily weather conditions for each row in the flash_floods_ky_2015_2025_cleaned.csv file. 
+- Generation of Python scripts that call for daily weather conditions, NLCD data, moon and sun data, and ONI data.
+- Troubleshooting errors that occurred throughout the project.
 
 ## Future Enhancements
 Planned future enhancements for this project include expanding the analytical depth and integrating geospatial analysis techniques to better understand flash flooding patterns across Kentucky.
 
 ### Planned Extensions
-- Integrate historical weather condition data for counties impacted during the top five highest flash flooding event dates to analyze relationships between precipitation intensity, storm conditions, and event frequency.
 - Develop predictive analytics and forecasting models to identify potential flash flooding risk trends using historical event and weather datasets.
 - Incorporate GIS and geospatial analysis tools to create yearly county-level flash flooding maps for Kentucky from 2015–2025, enabling hotspot identification and spatial trend analysis.
 - Perform spatial visualization and clustering analysis to examine regional patterns and areas of recurring vulnerability.
