@@ -13,7 +13,6 @@ This project demonstrates skills in data cleaning, exploratory data analysis (ED
 ├── notebooks/
 ├── plots/
 │ ├── ky_yearly_flash_floods_maps/
-├── scripts/
 ├── sql/
 ├── .gitignore
 ├── README.md 
