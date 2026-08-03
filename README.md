@@ -104,24 +104,24 @@ The analysis workflow includes:
 - Visualization of frequency distributions and comparative trends over time
 
 ## Key Findings & Insights
-- Year-over-year variability in flash flood frequency was observed across the dataset.
+- There has not been a steady increase in flash flooding event frequency from 2015 - 2025.
 - Certain counties show consistently higher event concentrations, suggesting localized vulnerability.
 - Emergency services and call center reports are among the most common documentation sources.
 - Temporal clustering suggests potential links between seasonal weather patterns and event frequency.
-- Kentucky flash-flood events were significantly unevenly distributed across moon-illumination levels, with substantially more events occurring during very low (0–10%) and very high (90–100%) illumination than expected. 
-- Annual flash flooding damage had a 200% percentage change between 2024 and 2025.
+- Kentucky flash flood events were significantly unevenly distributed across moon-illumination levels, with substantially more events occurring during very low (0–10%) and very high (90–100%) illumination than expected.
 
-## Data Sources
+## Sources
 - [NOAA Storm Events Database](https://www.ncei.noaa.gov/stormevents/choosedates.jsp?statefips=21%2CKENTUCKY)
 - [Weather API](https://www.weatherapi.com/)
 - [NCEP Climate Prediction Center]( https://www.cpc.ncep.noaa.gov/data/indices/oni.ascii.txt)
 - [ArcGIS Online](https://www.arcgis.com/index.html)
+- [W3 Schools](https://www.w3schools.com)
 - Datasets used in this project can be found in the `data/` folder
 
 ## AI Usage
 Generative AI was implemented in the following way(s):
 - Creation of a sample README.md file that could be edited throughout the duration of the project.
-- Generation of Python scripts that call for daily weather conditions, NLCD data, moon and sun data, and ONI data.
+- Code generation assistance of Python scripts that call for daily weather conditions, NLCD data, moon and sun data, and ONI data.
 - Troubleshooting errors that occurred throughout the project.
 
 ## Future Enhancements
@@ -129,7 +129,7 @@ Planned future enhancements for this project include expanding the analytical de
 
 ### Planned Extensions
 - Develop predictive analytics and forecasting models to identify potential flash flooding risk trends using historical event and weather datasets.
-- Incorporate GIS and geospatial analysis tools to create yearly county-level flash flooding maps for Kentucky from 2015–2025, enabling hotspot identification and spatial trend analysis.
+- Create a Power BI dashboard that shows key metrics and data visualizations. 
 - Perform spatial visualization and clustering analysis to examine regional patterns and areas of recurring vulnerability.
 - Explore potential relationships between emergency response infrastructure and flash flooding impacts by analyzing 911 call center funding data, staffing levels, or resource allocation.
 
