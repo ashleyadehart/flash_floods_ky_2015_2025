@@ -46,9 +46,9 @@ Activate the environment based on your operating system:
 .venv\Scripts\Activate.ps1
 ```
 
-#### **macOS / Linux:**
+#### **macOS / Linux (Git Bash):**
 ```bash
-source .venv/bin/activate
+source .venv/Scripts/activate
 ```
 
 ### 4. Install Dependencies
@@ -116,13 +116,15 @@ The analysis workflow includes:
 - [NCEP Climate Prediction Center]( https://www.cpc.ncep.noaa.gov/data/indices/oni.ascii.txt)
 - [ArcGIS Online](https://www.arcgis.com/index.html)
 - [W3 Schools](https://www.w3schools.com)
-- Datasets used in this project can be found in the `data/` folder
+    - Utilized this source to reference SQL examples to create SQL queries.
+
+> Datasets used in this project can be found in the `data/` folder
 
 ## AI Usage
 Generative AI was implemented in the following way(s):
 - Creation of a sample README.md file that could be edited throughout the duration of the project.
 - Code generation assistance of Python scripts that call for daily weather conditions, NLCD data, moon and sun data, and ONI data.
-- Troubleshooting errors that occurred throughout the project.
+- Troubleshooting of errors that occurred throughout the project.
 
 ## Future Enhancements
 Planned future enhancements for this project include expanding the analytical depth and integrating geospatial analysis techniques to better understand flash flooding patterns across Kentucky.
