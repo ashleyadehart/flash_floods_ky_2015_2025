@@ -122,9 +122,6 @@ pyspnego==0.12.1
 python-dateutil==2.9.0.post0
 python-dotenv==1.2.2
 python-json-logger==4.1.0
-pywin32==312
-pywin32-ctypes==0.2.3
-pywinpty==3.0.5
 PyYAML==6.0.3
 pyzmq==27.1.0
 qh3==1.9.1

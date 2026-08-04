@@ -13,7 +13,6 @@ This project demonstrates skills in data cleaning, exploratory data analysis (ED
 ├── notebooks/
 ├── plots/
 │ ├── ky_yearly_flash_floods_maps/
-├── sql/
 ├── .gitignore
 ├── README.md 
 └── requirements.txt
@@ -48,7 +47,7 @@ Activate the environment based on your operating system:
 
 #### **macOS / Linux (Git Bash):**
 ```bash
-source .venv/Scripts/activate
+source .venv/bin/activate
 ```
 
 ### 4. Install Dependencies
